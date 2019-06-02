@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>JS Boilerplace</title>
+    <link rel="stylesheet" href="../src/style.css" />
+  </head>
+  <body>
+		<div class="container">
+			<span
+				>Tic tac toe<br /><br />
+				Select X or O:
+			</span>
+			<div>
+				<button class="button" onclick="playerSelect('X')">X</button>
+				<button class="button" onclick="playerSelect('O')">O</button>
+			</div>
+			<div>
+				<span>Player:</span>
+				<span class="player"></span>
+			</div>
+			<div>
+				<span>Computer:</span>
+				<span class="computer"></span>
+			</div>
+			<div class="table">
+				<div class="cell" onclick="move(0)"></div>
+				<div class="cell" onclick="move(1)"></div>
+				<div class="cell" onclick="move(2)"></div>
+				<div class="cell" onclick="move(3)"></div>
+				<div class="cell" onclick="move(4)"></div>
+				<div class="cell" onclick="move(5)"></div>
+				<div class="cell" onclick="move(6)"></div>
+				<div class="cell" onclick="move(7)"></div>
+				<div class="cell" onclick="move(8)"></div>
+			</div>
+		</div>
+
+    <script type="module" src="../src/modules/main.js"></script>
+  </body>
+</html>

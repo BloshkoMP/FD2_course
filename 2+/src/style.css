@@ -1,0 +1,78 @@
+.main {
+    background-color: #2B3E50;
+}
+.b1 {
+    background-color: #9B4C71;
+}
+.b2 {
+    background-color: #683136;
+}
+.b3 {
+    background-color: #828B3C;
+}
+.b4 {
+    background-color: #5F586B;
+}
+.b5 {
+    background-color: #FF6600;
+}
+.b6 {
+    background-color: #457698;
+}
+.b7 {
+    background-color: #28795D;
+}
+.b8 {
+    background-color: #769D93;
+}
+.b9 {
+    background-color: #3eadcf;
+}
+.b10 {
+    background-color: #CC6600;
+ }
+.b11 {
+    background-color: #FF6699;
+}
+.b12 {
+    background-color: #330099;
+}
+.b13 {
+    background-color: #006666;
+}
+.b14 {
+    background-color: #537895;
+}
+.b15 {
+    background-color: #999900;
+}
+.b16 {
+    background-color: #663300;
+}
+a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 38px;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 100px;
+}
+.changeTextBox {
+    width: 800px;
+    margin-top: 100px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+a:hover, img:hover {
+    text-shadow: black 0 0 10px; 
+    color: #fff;
+    cursor: pointer;
+}
+.img {
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+}

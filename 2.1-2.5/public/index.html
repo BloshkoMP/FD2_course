@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>JS Boilerplace</title>
+    <link rel="stylesheet" href="../src/style.css" />
+  </head>
+  <body>
+<div class="firstBlock">
+    <b>p1.</b>  Write color and push the button <br>
+    <input type="text" class="inputColor"><br>
+    <button onclick="changeBgColorByText()">Change backgraund color by text</button> <br>
+</div>
+<div class="selectBlock">
+    <b>p2.</b> Select the color and push the button <br>
+    <select>
+        <option value="green">green</option>
+        <option value="blue">blue</option>
+        <option value="red">red</option>
+        <option value="black">black</option>
+        <option value="yellow">yellow</option>
+    </select> <br>
+<button onclick="changeBgColorBySelect()">Change backgraund color by select</button> <br>
+</div>
+<div class="selectBlock">
+    <b>p3.</b> Select the color and push the button <br>
+    <select>
+        <option value="green">green</option>
+        <option value="blue">blue</option>
+        <option value="red">red</option>
+        <option value="black">black</option>
+        <option value="yellow">yellow</option>
+    </select>  <br>  
+<button onclick="changeBgColorByClass()">Change backgraund color by Class</button>
+</div>
+<div>
+    <b>p4.</b> Select color
+    <input type="color" class="inputColorByType">
+    <button onclick="changeBgColorByTypeColor()">Change</button>
+</div>
+<div class="selectBlock">
+    <b>p5.</b> Select the color and push the button <br>
+    <select onchange="changeBgColorByThis(this)" class="change">
+        <option value="green">green</option>
+        <option value="blue">blue</option>
+        <option value="red">red</option>
+        <option value="black">black</option>
+        <option value="yellow">yellow</option>
+    </select>  
+</div>
+<div class="selectBlock last">
+    <b>p6.</b> Add or remove color to p5 <br>
+    <button onclick='addColorByPromt()'>Add</button>
+    <button onclick='RemoveColorByPromt()'>Remove</button>
+
+    <script type="module" src="../src/modules/main.js"></script>
+  </body>
+</html>

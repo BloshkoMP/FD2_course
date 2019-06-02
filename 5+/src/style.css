@@ -1,0 +1,36 @@
+.field {
+	width: 600px;
+	height: 400px;
+	border: 5px solid gray;
+	background-color: darkgreen;
+	position: relative;
+	cursor: pointer;
+}
+.ball {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 60px;
+	height: 60px;
+	transition: all 0.5s;
+}
+body {
+	display: flex;
+}
+button {
+	position: relative;
+	display: block;
+	top: 15%;
+	left: 20px;
+	height: 70px;
+	width: 150px;
+	margin-right: 20px;
+	font-size: 20px;
+}
+.button-field {
+	position: relative;
+	width: 100px;
+	height: 400px;
+	display: flex;
+	display: block;
+}
