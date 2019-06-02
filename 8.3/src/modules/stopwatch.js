@@ -10,7 +10,7 @@ const htmlElements = {
 	reset: document.querySelector(".container  [data-mode=stopwatch] .reset")
 };
 function Stopwatch() {}
-Stopwatch.prototype.initTimer = function() {
+Stopwatch.prototype.initStopwatch = function() {
 	const { start, stop, reset } = htmlElements;
 	start.addEventListener("click", onStartButtonClicked);
 	stop.addEventListener("click", onStopButtonClicked);
