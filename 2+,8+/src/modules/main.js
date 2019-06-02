@@ -6,18 +6,9 @@
 };
 let playerSign, computerSign, checkSign;
 let round = 1;
-const winArray = [
-	[0, 1, 2],
-	[3, 4, 5],
-	[6, 7, 8],
-	[0, 3, 6],
-	[1, 4, 7],
-	[2, 5, 8],
-	[0, 4, 8],
-	[2, 4, 6]
-];
+const winArray = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
 
-function move(id) {
+window.move = id => {
 	if (htmlElements.cell[id].innerText !== "" || htmlElements.player.innerText == "") {
 		return true;
 	}
@@ -29,14 +20,14 @@ function move(id) {
 		alert("draw");
 		restart();
 	}
-}
+};
 
 function disabledButton(value = true) {
 	htmlElements.button[0].disabled = value;
 	htmlElements.button[1].disabled = value;
 }
 
-function playerSelect(change) {
+window.playerSelect = change => {
 	switch (change) {
 		case "X":
 			setPlayersData("X", "O");
@@ -49,7 +40,7 @@ function playerSelect(change) {
 			break;
 	}
 	disabledButton();
-}
+};
 
 function setPlayersData(first, second) {
 	const { player, computer } = htmlElements;

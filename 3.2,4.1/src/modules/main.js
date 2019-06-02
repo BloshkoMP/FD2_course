@@ -1,4 +1,4 @@
-﻿function showObj() {
+﻿window.showObj = () => {
 	//Объявляем объекты
 
 	let room = {};
@@ -52,7 +52,7 @@
 	student.breathe = breathe;
 	otherDevices.connect = connect;
 	roomWindow.creaks = creaks;
-	
+
 	Function.prototype.toJSON = function() {
 		return "This is function";
 	};
@@ -60,4 +60,4 @@
 	let str = JSON.stringify(room, null, 4);
 	document.querySelector(".text").innerText = str;
 	console.log(room);
-}
+};
