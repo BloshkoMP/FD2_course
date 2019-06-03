@@ -4,7 +4,7 @@ function Computer(OS, material, broken, performance) {
 	this.broken = broken;
 	this.power = performance;
 	this.cost = 200;
-	const name = function() {};
+	const name = function() {}; //область видимости функция Computer
 	this.sentences = function() {
 		alert(`this ${this.power} computer costs ${this.cost} euros`);
 	};

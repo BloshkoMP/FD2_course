@@ -3,7 +3,7 @@ function Teacher(knowlegeLvl, experience, age) {
 	this.experience = experience;
 	this.years = age;
 	this.startedTeaching = 25;
-	const name = function() {};
+	const name = function() {}; //область видимости функция Teacher
 	this.teachingExperience = function() {
 		alert(+this.age - this.startedTeaching);
 	};

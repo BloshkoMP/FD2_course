@@ -3,7 +3,7 @@ function AirСonditioning(material, need, col) {
 	this.need = need;
 	this.color = col;
 	this.cost = 600;
-	const name = function() {};
+	const name = function() {}; //область видимости функция AirСonditioning()
 	this.leafLetText = function() {
 		alert(`this ${this.color} AirСonditioning cost ${this.cost} euros`);
 	};

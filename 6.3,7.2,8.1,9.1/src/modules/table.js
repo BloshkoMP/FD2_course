@@ -4,7 +4,7 @@ function Table(size, material, numberOfPerson, long) {
 	this.numberOfPerson = numberOfPerson;
 	this.length = 10;
 	this.width = long;
-	const name = function() {};
+	const name = function() {}; //область видимости функция Table()
 	this.square = function() {
 		alert(this.length * +this.long);
 	};

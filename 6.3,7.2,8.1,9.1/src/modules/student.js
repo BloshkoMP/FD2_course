@@ -3,7 +3,7 @@ function Student(experience, desireToLearn, duration) {
 	this.desireToLearn = desireToLearn;
 	this.trainingPeriod = duration;
 	this.passedMonth = 2;
-	const name = function() {};
+	const name = function() {}; //область видимости функция Student
 	this.leftMonth = function() {
 		alert(+this.trainingPeriod - this.passedMonth);
 	};

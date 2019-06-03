@@ -4,7 +4,7 @@ function OtherDevices(input, otherInput, sound, num) {
 	this.sound = sound;
 	this.wireLength = 1.5;
 	this.numberOfDevice = num;
-	const name = function() {};
+	const name = function() {}; //область видимости функция OtherDevices
 	this.TotalLength = function() {
 		alert(+this.numberOfDevice * wireLength);
 	};

@@ -3,7 +3,7 @@ function StudyBook(material, size, bookLength) {
 	this.size = size;
 	this.numberOfPages = bookLength;
 	this.wordsPerPage = 1000;
-	const name = function() {};
+	const name = function() {}; //область видимости функция StudyBook
 	this.wordsInTheBook = function() {
 		alert(+this.numberOfPages * this.wordsPerPage);
 	};
