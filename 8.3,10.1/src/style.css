@@ -52,3 +52,10 @@ body {
 .hidden {
 	display: none;
 }
+.timerOutput {
+	text-align: center;
+	width: 300px;
+	margin-bottom: 10px;
+	font-size: 30px;
+	font-family: sans-serif;
+}

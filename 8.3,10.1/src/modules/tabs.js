@@ -1,21 +1,39 @@
 const htmlElements = {
 	links: document.querySelectorAll(".container .links a"),
-	tabs: document.querySelectorAll(".container .tabs [data-mode]")
+	tabs: document.querySelectorAll(".container .tabs [data-mode]"),
+	output: document.querySelector('.container .tabs [data-mode="timer"] .output'),
+	okButton: document.querySelector(".container .tabs [data-mode] .okButton"),
+	timerInput: document.querySelector(".container .tabs [data-mode] .timerOutput")
 };
-
+let currentTimer = "00:05:00";
 function Tab() {}
 
 Tab.prototype.initTabs = function() {
 	showSelectedTab("clock");
 	htmlElements.links.forEach(function(element) {
-		element.addEventListener("click", onLinkClicked);
+		element.addEventListener("click", function() {
+			onLinkClicked(this);
+		});
 	});
+	htmlElements.output.addEventListener("dblclick", function() {
+		onLinkClicked(htmlElements.tabs[3]);
+	});
+	htmlElements.okButton.addEventListener("click", onButtonClick);
 };
 
-function onLinkClicked() {
-	switchToMode(this.dataset.mode);
+function onLinkClicked(value) {
+	clearTimerInput();
+	switchToMode(value.dataset.mode);
 }
 
+function onButtonClick() {
+	switchToMode("timer");
+	htmlElements.output.innerText = htmlElements.timerInput.value;
+	currentTimer = htmlElements.timerInput.value;
+}
+function clearTimerInput() {
+	htmlElements.timerInput.value = "";
+}
 function switchToMode(mode) {
 	showClickedLink(mode);
 	showSelectedTab(mode);
@@ -42,3 +60,4 @@ function showSelectedTab(mode) {
 }
 
 export { Tab };
+export { currentTimer };
