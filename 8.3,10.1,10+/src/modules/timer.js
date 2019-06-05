@@ -3,8 +3,10 @@ import {switchToMode} from './tabs.js';
 let hrs = 0,
 	min = 0,
 	sec = 0,
-	timerTiker;
-let currentTimer = '00:05:00';
+	defaultTimer = '00:05:00',
+	timerTiker,
+	newTimerValue;
+let currentTimer;
 
 const htmlElements = {
 	output: document.querySelector('.container  [data-mode=timer] .output'),
@@ -17,7 +19,15 @@ const htmlElements = {
 
 function Timer() {}
 Timer.prototype.initTimer = function() {
-	const {start, stop, reset, okButton, timerInput} = htmlElements;
+	debugger;
+	const {start, stop, reset, okButton, timerInput, output} = htmlElements;
+	if (localStorage.getItem('timer')) {
+		output.innerText = localStorage.getItem('timer');
+	} else if (localStorage.getItem('timerDefoult')) {
+		output.innerText = localStorage.getItem('timerDefoult');
+	} else {
+		output.innerText = defaultTimer;
+	}
 	start.addEventListener('click', onStartButtonClicked);
 	stop.addEventListener('click', onStopButtonClicked);
 	reset.addEventListener('click', onResetButtonClicked);
@@ -30,7 +40,17 @@ function onInputFocusOut() {
 }
 
 function onStartButtonClicked() {
-	const newTimerValue = currentTimer.split(':');
+	debugger;
+	if (localStorage.getItem('timer')) {
+		currentTimer = localStorage.getItem('timer');
+	} else if (localStorage.getItem('timerDefoult')) {
+		currentTimer = localStorage.getItem('timerDefoult');
+		htmlElements.output.innerText = localStorage.getItem('timerDefoult');
+	} else {
+		htmlElements.output.innerText = defaultTimer;
+		currentTimer = defaultTimer;
+	}
+	newTimerValue = currentTimer.split(':');
 	hrs = parseInt(newTimerValue[0]);
 	min = parseInt(newTimerValue[1]);
 	sec = parseInt(newTimerValue[2]);
@@ -45,9 +65,10 @@ function onStopButtonClicked() {
 }
 
 function onResetButtonClicked() {
-	htmlElements.output.innerText = currentTimer;
+	htmlElements.output.innerText = localStorage.getItem('timerDefoult');
 	clearInterval(timerTiker);
 	timerTiker = null;
+	localStorage.removeItem('timer');
 }
 
 function onTimerTicker() {
@@ -67,11 +88,11 @@ function onTimerTicker() {
 		(min ? (min >= 10 ? min : '0' + min) : '00') +
 		':' +
 		(sec >= 10 ? sec : '0' + sec);
+	localStorage.setItem('timer', htmlElements.output.innerText);
 	if (!sec && !min && !hrs) {
 		clearInterval(timerTiker);
 	}
 }
-
 
 //управление временем таймера
 
@@ -80,7 +101,9 @@ function onButtonClick() {
 	if (checkIfTimeCanBeAdded(timerInput.value)) {
 		switchToMode('timer');
 		output.innerText = timerInput.value;
-		currentTimer = timerInput.value;
+		defaultTimer = timerInput.value;
+		localStorage.setItem('timerDefoult', defaultTimer);
+		localStorage.removeItem('timer');
 		resetInput();
 	}
 }

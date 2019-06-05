@@ -3,10 +3,13 @@ const htmlElements = {
 	tabs: document.querySelectorAll('.container .tabs [data-mode]'),
 	output: document.querySelector('.container .tabs [data-mode="timer"] .output')
 };
+let storageMode = 'clock';
 function Tab() {}
-
 Tab.prototype.initTabs = function() {
-	showSelectedTab('clock');
+	if (localStorage.getItem('mode')) {
+		storageMode = localStorage.getItem('mode');
+	}
+	switchToMode(storageMode);
 	htmlElements.links.forEach(function(element) {
 		element.addEventListener('click', function() {
 			onLinkClicked(this);
@@ -56,6 +59,7 @@ function showSelectedTab(mode) {
 	htmlElements.tabs.forEach(function(element) {
 		if (element.dataset.mode === mode) {
 			element.classList.remove('hidden');
+			localStorage.setItem('mode', mode);
 		} else {
 			element.classList.add('hidden');
 		}
