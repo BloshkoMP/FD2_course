@@ -1,4 +1,5 @@
 import {switchToMode} from './tabs.js';
+
 let hrs = 0,
 	min = 0,
 	sec = 0,

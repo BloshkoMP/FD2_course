@@ -24,6 +24,11 @@ function onLinkClicked(value) {
 function switchToMode(mode) {
 	showClickedLink(mode);
 	showSelectedTab(mode);
+	if (mode === 'input') {
+		hideLinks();
+	} else {
+		showLinks();
+	}
 }
 
 function showClickedLink(mode) {
@@ -33,6 +38,17 @@ function showClickedLink(mode) {
 		} else {
 			element.classList.remove('selected');
 		}
+	});
+}
+function hideLinks() {
+	htmlElements.links.forEach(function(element) {
+		element.classList.add('hidden');
+	});
+}
+
+function showLinks() {
+	htmlElements.links.forEach(function(element) {
+		element.classList.remove('hidden');
 	});
 }
 

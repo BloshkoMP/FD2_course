@@ -55,7 +55,14 @@ body {
 .timerOutput {
 	text-align: center;
 	width: 300px;
+	margin-top: 10px;
 	margin-bottom: 10px;
 	font-size: 30px;
 	font-family: sans-serif;
+}
+
+[data-mode='input'],
+.okButton {
+	font-family: sans-serif;
+	font-size: 20px;
 }
