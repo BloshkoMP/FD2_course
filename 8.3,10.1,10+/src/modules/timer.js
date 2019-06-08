@@ -5,8 +5,8 @@ let hrs = 0,
 	sec = 0,
 	defaultTimer = "00:05:00",
 	timerTiker,
-	newTimerValue;
-let currentTimer;
+	newTimerValue,
+	currentTimer;
 
 const htmlElements = {
 	output: document.querySelector(".container  [data-mode=timer] .output"),
@@ -31,11 +31,13 @@ Timer.prototype.initTimer = function() {
 	stop.addEventListener("click", onStopButtonClicked);
 	reset.addEventListener("click", onResetButtonClicked);
 	okButton.addEventListener("click", onButtonClick);
-	timerInput.addEventListener("focusout", onInputFocusOut);
+	timerInput.addEventListener("focusout", function() {
+		onInputFocusOut(this);
+	});
 };
 
-function onInputFocusOut() {
-	htmlElements.timerInput.style.borderColor = !checkIfTimeCanBeAdded(this.value) ? "red" : "green";
+function onInputFocusOut(event) {
+	htmlElements.timerInput.style.borderColor = !checkIfTimeCanBeAdded(event.value) ? "red" : "green";
 }
 
 function onStartButtonClicked() {
@@ -103,6 +105,7 @@ function onTimerTicker() {
 
 function onButtonClick() {
 	const { output, timerInput } = htmlElements;
+	onInputFocusOut(timerInput);
 	if (checkIfTimeCanBeAdded(timerInput.value)) {
 		switchToMode("timer");
 		output.innerText = timerInput.value;
