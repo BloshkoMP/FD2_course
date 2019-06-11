@@ -1,8 +1,6 @@
-import { onStopButtonClicked } from "./timer.js";
 const htmlElements = {
 	links: document.querySelectorAll(".container .links a"),
-	tabs: document.querySelectorAll(".container .tabs [data-mode]"),
-	output: document.querySelector('.container .tabs [data-mode="timer"] .output')
+	tabs: document.querySelectorAll(".container .tabs [data-mode]")
 };
 let storageMode = "clock";
 function Tab() {}
@@ -12,28 +10,17 @@ Tab.prototype.initTabs = function() {
 	}
 	switchToMode(storageMode);
 	htmlElements.links.forEach(function(element) {
-		element.addEventListener("click", function() {
-			onLinkClicked(this);
-		});
-	});
-	htmlElements.output.addEventListener("dblclick", function() {
-		onLinkClicked(htmlElements.tabs[3]);
-		onStopButtonClicked();
+		element.addEventListener("click", onLinkClicked);
 	});
 };
 
-function onLinkClicked(value) {
-	switchToMode(value.dataset.mode);
+function onLinkClicked() {
+	switchToMode(this.dataset.mode);
 }
 
 function switchToMode(mode) {
 	showClickedLink(mode);
 	showSelectedTab(mode);
-	if (mode === "input") {
-		hideLinks();
-	} else {
-		showLinks();
-	}
 }
 
 function showClickedLink(mode) {
@@ -69,4 +56,3 @@ function showSelectedTab(mode) {
 }
 
 export { Tab };
-export { switchToMode };
