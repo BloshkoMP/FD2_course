@@ -1,29 +1,31 @@
-import { Helper } from "./helper.js";
+import {Helper} from './helper.js';
 function StopWatchTimer() {}
 
 StopWatchTimer.prototype.init = function(initMode, initSeconds) {
 	const htmlElements = {
 		output: document.querySelector(`.container  [data-mode=${initMode}] .output`),
-		buttons: document.querySelectorAll(".container .tabs [data-mode] .buttons button"),
+		buttons: document.querySelectorAll(`.container [data-mode=${initMode}]  button`),
 		start: document.querySelector(`.container  [data-mode=${initMode}] .start`),
 		stop: document.querySelector(`.container  [data-mode=${initMode}] .stop`),
 		reset: document.querySelector(`.container  [data-mode=${initMode}] .reset`)
 		//okButton: document.querySelector(`.container .tabs [data-mode] .okButton`),
 		//timerInput: document.querySelector(`.container .tabs [data-mode] .timerOutput`)
 	};
-	const { start, buttons, stop, reset, output, okButton, timerInput } = htmlElements;
+	const {start, buttons, stop, reset, output, okButton, timerInput} = htmlElements;
+	
 	let tiker,
 		startTime,
 		difSec = 0,
-		difMlSec = 0;
+		difMlSec = 0,
+		lastDifSec = initSeconds;
 
-	start.addEventListener("click", () => {
+	start.addEventListener('click', () => {
 		onStartButtonClicked(initMode);
 	});
-	stop.addEventListener("click", () => {
+	stop.addEventListener('click', () => {
 		onStopButtonClicked(initMode);
 	});
-	reset.addEventListener("click", () => {
+	reset.addEventListener('click', () => {
 		onResetButtonClicked(initMode);
 	});
 	// output.addEventListener("focusout", onInputFocusOut);
@@ -31,23 +33,23 @@ StopWatchTimer.prototype.init = function(initMode, initSeconds) {
 	// timerInput.addEventListener("dblclick", onTimerDbClick);
 
 	function onStartButtonClicked() {
-		Helper.removeClass("disabled", buttons);
-		Helper.addClass("disabled", [start]);
+		Helper.removeClass('disabled', buttons);
+		Helper.addClass('disabled', [start]);
 		startTime = new Date().getTime();
 		tiker = setInterval(onIntervalTicker, 1000);
 	}
 
 	function onStopButtonClicked() {
-		Helper.removeClass("disabled", buttons);
-		Helper.addClass("disabled", [stop]);
+		Helper.removeClass('disabled', buttons);
+		Helper.addClass('disabled', [stop]);
 		clearInterval(tiker);
-		initSeconds = difSec;
+		lastDifSec = difSec;
 	}
 
 	function onResetButtonClicked() {
-		Helper.removeClass("disabled", buttons);
-		Helper.addClass("disabled", [reset]);
-		initMode === "stopwatch" ? (initSeconds = 0) : (initSeconds = 300);
+		Helper.removeClass('disabled', buttons);
+		Helper.addClass('disabled', [reset]);
+		lastDifSec = initSeconds;
 		startTime = new Date().getTime();
 		clearInterval(tiker);
 		onIntervalTicker();
@@ -55,11 +57,11 @@ StopWatchTimer.prototype.init = function(initMode, initSeconds) {
 
 	function onIntervalTicker() {
 		switch (initMode) {
-			case "stopwatch":
+			case 'stopwatch':
 				difMlSec = new Date().getTime() - startTime;
-				difSec = difMlSec / 1000 + initSeconds;
+				difSec = difMlSec / 1000 + lastDifSec;
 				break;
-			case "timer":
+			case 'timer':
 				difMlSec = startTime - new Date().getTime();
 				difSec = Math.round(difMlSec / 1000) + initSeconds;
 				break;
@@ -78,11 +80,16 @@ StopWatchTimer.prototype.init = function(initMode, initSeconds) {
 		if (hrs < 10) {
 			hrs = `0${hrs}`;
 		}
-		output.innerText = `${hrs}:${min}:${sec}`;
+		setTime(sec, min, hrs);
+	}
 
-		if (initMode === "timer" && output.innerText === "00:00:00") {
+	function setTime(sec, min, hrs) {
+		if (initMode === 'timer' && output.innerText === '00:00:00') {
 			clearInterval(tiker);
+			Helper.removeClass('disabled', buttons);
+		} else {
+			output.innerText = `${hrs}:${min}:${sec}`;
 		}
 	}
 };
-export { StopWatchTimer };
+export {StopWatchTimer};

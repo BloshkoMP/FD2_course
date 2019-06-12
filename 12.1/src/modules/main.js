@@ -15,14 +15,14 @@
 	}
 };
 
-let arr = [];
+const arr = [];
 
 function cloneObject(obj) {
 	if (arr.indexOf(obj) > -1) {
 		return "circular referense";
 	}
 	arr.push(obj);
-	let cloneObj = {};
+	const cloneObj = {};
 	for (let key in obj) {
 		if (typeof obj[key] === "object") {
 			cloneObj[key] = cloneObject(obj[key]);
