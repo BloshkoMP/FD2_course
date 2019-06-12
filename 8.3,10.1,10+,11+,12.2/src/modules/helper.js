@@ -12,4 +12,4 @@ function Helper() {}
 Helper.addClass = addClass;
 Helper.removeClass = removeClass;
 
-export { addClass, removeClass, Helper };
+export {Helper};
