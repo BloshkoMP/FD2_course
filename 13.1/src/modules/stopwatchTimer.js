@@ -7,7 +7,7 @@ function StopWatchTimer(initMode, initSeconds) {
 		stop: document.querySelector(`.container  [data-mode=${initMode}] .stop`),
 		reset: document.querySelector(`.container  [data-mode=${initMode}] .reset`)
 	};
-	const { start, buttons, stop, reset, output, okButton, timerInput } = this.htmlElements;
+	const { start, buttons, stop, reset, output } = this.htmlElements;
 
 	let tiker,
 		startTime,
@@ -26,10 +26,14 @@ function StopWatchTimer(initMode, initSeconds) {
 	});
 
 	function onStartButtonClicked() {
-		Helper.removeClass("disabled", buttons);
-		Helper.addClass("disabled", [start]);
-		startTime = new Date().getTime();
-		tiker = setInterval(onIntervalTicker, 1000);
+		if (initMode === "timer" && output.innerText === "00:00:00") {
+			Helper.removeClass("disabled", buttons);
+		} else {
+			Helper.removeClass("disabled", buttons);
+			Helper.addClass("disabled", [start]);
+			startTime = new Date().getTime();
+			tiker = setInterval(onIntervalTicker, 1000);
+		}
 	}
 
 	function onStopButtonClicked() {
@@ -56,7 +60,7 @@ function StopWatchTimer(initMode, initSeconds) {
 				break;
 			case "timer":
 				difMlSec = startTime - new Date().getTime();
-				difSec = Math.round(difMlSec / 1000) + initSeconds;
+				difSec = Math.round(difMlSec / 1000) + lastDifSec;
 				break;
 		}
 
@@ -64,23 +68,23 @@ function StopWatchTimer(initMode, initSeconds) {
 		let min = Math.trunc((difSec / 60) % 60);
 		let hrs = Math.trunc(difSec / 3600);
 
-		if (sec < 10) {
-			sec = `0${sec}`;
-		}
-		if (min < 10) {
-			min = `0${min}`;
-		}
-		if (hrs < 10) {
-			hrs = `0${hrs}`;
-		}
 		setTime(sec, min, hrs);
 	}
 
 	function setTime(sec, min, hrs) {
-		if (initMode === "timer" && output.innerText === "00:00:00") {
+		if (initMode === "timer" && parseInt(hrs + min + sec) < 0) {
 			clearInterval(tiker);
 			Helper.removeClass("disabled", buttons);
 		} else {
+			if (sec < 10) {
+				sec = `0${sec}`;
+			}
+			if (min < 10) {
+				min = `0${min}`;
+			}
+			if (hrs < 10) {
+				hrs = `0${hrs}`;
+			}
 			output.innerText = `${hrs}:${min}:${sec}`;
 		}
 	}

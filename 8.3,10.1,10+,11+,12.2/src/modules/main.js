@@ -1,12 +1,13 @@
-import {Tab} from './tabs.js';
-import {Clock} from './clock.js';
-import {StopWatchTimer} from './stopwatchTimer.js';
+import { Tab } from "./tabs.js";
+import { Clock } from "./clock.js";
+import { StopWatchTimer } from "./stopwatchTimer.js";
 
 const tabs = new Tab();
 const clock = new Clock();
-const stopWatchTimer = new StopWatchTimer();
+const stopwatch = new StopWatchTimer();
+const timer = new StopWatchTimer();
 
 tabs.initTabs();
 clock.initClock();
-stopWatchTimer.init('stopwatch', 0);
-stopWatchTimer.init('timer', 300);
+stopwatch.init("stopwatch", 0);
+timer.init("timer", 300);
