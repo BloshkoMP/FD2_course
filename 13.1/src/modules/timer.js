@@ -5,6 +5,7 @@ function Timer() {
 }
 
 Timer.prototype = Object.create(StopWatchTimer.prototype);
+Timer.prototype.constructor = Timer;
 
 Timer.prototype.showInfo = function() {
 	console.log(this);
