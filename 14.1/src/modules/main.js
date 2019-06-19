@@ -5,8 +5,8 @@ import { Stopwatch } from "./stopwatch.js";
 
 new Tab();
 new Clock();
-const timer = new Timer("timer", 300);
-const stopwatch = new Stopwatch("stopwatch", 0);
+const timer = new Timer();
+const stopwatch = new Stopwatch();
 
 timer.showInfo();
 stopwatch.showInfo();
