@@ -14,26 +14,23 @@ function StopWatchTimer(initMode, initSeconds) {
 		difSec = 0,
 		difMlSec = 0,
 		lastDifSec = initSeconds;
+	const defaultThis = this;
 
-	start.addEventListener("click", () => {
-		onStartButtonClicked(initMode);
+	start.addEventListener("click", function() {
+		onStartButtonClicked.call(defaultThis);
 	});
-	stop.addEventListener("click", () => {
-		onStopButtonClicked(initMode);
+	stop.addEventListener("click", function() {
+		onStopButtonClicked.call(defaultThis);
 	});
-	reset.addEventListener("click", () => {
-		onResetButtonClicked(initMode);
+	reset.addEventListener("click", function() {
+		onResetButtonClicked.call(defaultThis);
 	});
 
 	function onStartButtonClicked() {
-		if (initMode === "timer" && output.innerText === "00:00:00") {
-			Helper.removeClass("disabled", buttons);
-		} else {
-			Helper.removeClass("disabled", buttons);
-			Helper.addClass("disabled", [start]);
-			startTime = new Date().getTime();
-			tiker = setInterval(onIntervalTicker, 1000);
-		}
+		Helper.removeClass("disabled", buttons);
+		Helper.addClass("disabled", [start]);
+		startTime = new Date().getTime();
+		tiker = setInterval(onIntervalTicker.bind(this), 1000);
 	}
 
 	function onStopButtonClicked() {
@@ -49,20 +46,12 @@ function StopWatchTimer(initMode, initSeconds) {
 		lastDifSec = initSeconds;
 		startTime = new Date().getTime();
 		clearInterval(tiker);
-		onIntervalTicker();
+		onIntervalTicker.call(this);
 	}
 
 	function onIntervalTicker() {
-		switch (initMode) {
-			case "stopwatch":
-				difMlSec = new Date().getTime() - startTime;
-				difSec = difMlSec / 1000 + lastDifSec;
-				break;
-			case "timer":
-				difMlSec = startTime - new Date().getTime();
-				difSec = Math.round(difMlSec / 1000) + lastDifSec;
-				break;
-		}
+		difMlSec = this.getDifMlSec(startTime, lastDifSec, tiker);
+		difSec = Math.round(difMlSec / 1000) + lastDifSec;
 
 		let sec = Math.trunc(difSec % 60);
 		let min = Math.trunc((difSec / 60) % 60);
@@ -72,21 +61,16 @@ function StopWatchTimer(initMode, initSeconds) {
 	}
 
 	function setTime(sec, min, hrs) {
-		if (initMode === "timer" && parseInt(hrs + min + sec) < 0) {
-			clearInterval(tiker);
-			Helper.removeClass("disabled", buttons);
-		} else {
-			if (sec < 10) {
-				sec = `0${sec}`;
-			}
-			if (min < 10) {
-				min = `0${min}`;
-			}
-			if (hrs < 10) {
-				hrs = `0${hrs}`;
-			}
-			output.innerText = `${hrs}:${min}:${sec}`;
+		if (sec < 10) {
+			sec = `0${sec}`;
 		}
+		if (min < 10) {
+			min = `0${min}`;
+		}
+		if (hrs < 10) {
+			hrs = `0${hrs}`;
+		}
+		output.innerText = `${hrs}:${min}:${sec}`;
 	}
 }
 export { StopWatchTimer };
