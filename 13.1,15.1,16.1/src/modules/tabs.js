@@ -10,7 +10,9 @@ Tab.prototype.initTabs = function() {
 	}
 	switchToMode(storageMode);
 	htmlElements.links.forEach(function(element) {
-		element.addEventListener("click", onLinkClicked);
+		element.addEventListener("click", () => {
+			onLinkClicked.call(element);
+		});
 	});
 };
 
@@ -30,17 +32,6 @@ function showClickedLink(mode) {
 		} else {
 			element.classList.remove("selected");
 		}
-	});
-}
-function hideLinks() {
-	htmlElements.links.forEach(function(element) {
-		element.classList.add("hidden");
-	});
-}
-
-function showLinks() {
-	htmlElements.links.forEach(function(element) {
-		element.classList.remove("hidden");
 	});
 }
 
