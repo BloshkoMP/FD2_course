@@ -1,2 +1,3 @@
-import './style.css';
-import './modules/main.js';
+import "./style.css";
+import "./modules/sum.js";
+import "./modules/counter.js";
