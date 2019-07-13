@@ -1,0 +1,31 @@
+a {
+	text-decoration: none;
+	color: black;
+	margin-top: 20px;
+}
+ul {
+	list-style-type: circle;
+	margin: 0;
+	padding: 0;
+}
+li {
+	margin: 10px;
+	list-style-position: inside;
+}
+.title {
+	font-size: 30px;
+}
+.container {
+	width: 100%;
+	max-width: 500px;
+	position: absolute;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, 0);
+}
+body {
+	color: black;
+	font-family: Helvetica;
+	font-size: 20px;
+	background-color: silver;
+}
