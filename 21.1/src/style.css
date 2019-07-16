@@ -1,0 +1,40 @@
+body {
+	background: gray;
+	width: 350px;
+	height: 500px;
+	margin: 100px;
+	}
+
+.boxes {
+	display: flex;
+	margin: 10px;
+	width: 250px;
+}
+
+ .buttons {
+	width: 250px;
+	margin: 10px;
+}
+
+.symbol {
+	line-height: 45px;
+	font-size: 50px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+input[type=submit] {
+	width: 94px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	background: white;
+}
+
+input[type=submit]:hover {
+	background: gray;
+}
+
+input[type=text] {
+	width: 60px;
+	text-align: center;
+}
