@@ -2,7 +2,7 @@
 import { makeSyncDelay } from "./syncDelay.js";
 import runXhr from "./xmlHttpRequest.js";
 import { runSetTimeOut } from "./setTimeout.js";
-import runPromice from "./promise.js";
+import runPromise from "./promise.js";
 import runFetch from "./fetch.js";
 import runJQuery from "./jQuery.js";
 
@@ -20,6 +20,6 @@ runXhr("xhr 2", url2);
 runXhr("xhr 2", url3);
 addEventListener("btn");
 
-runPromice("Promice");
+runPromise("Promise");
 runFetch("Fetch", url);
 runJQuery("jQuery", url);
