@@ -1,4 +1,4 @@
-import { Logger } from "./logger.js";
+import {Logger} from './logger.js';
 
 export class Xhr1 {
 	constructor(name) {
@@ -6,16 +6,15 @@ export class Xhr1 {
 	}
 
 	run = url => {
-		const before = Date.now();
+		const before = new Date().getTime();
 		return new Promise(resolve => {
-			const self = this;
 			let xhr = new XMLHttpRequest();
-			xhr.open("GET", url);
-			xhr.onload = function() {
-				const after = Date.now();
-				resolve(new Logger(self.name, before, after));
-			};
+			xhr.open('GET', url);
 			xhr.send();
+			xhr.onload = function() {
+				const after = new Date().getTime();
+				resolve(new Logger(this.name, before, after));
+			};
 		});
 	};
 }
